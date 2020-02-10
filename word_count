@@ -1,0 +1,43 @@
+# Databricks notebook source
+print ("hello python")
+
+# COMMAND ----------
+
+word = sc.parallelize (
+   ["scala", 
+   "java", 
+   "hadoop", 
+   "spark", 
+   "akka",
+   "spark vs hadoop", 
+   "pyspark",
+   "pyspark and spark"]
+)
+
+# COMMAND ----------
+
+counts=word.count()
+
+# COMMAND ----------
+
+print ("Count is", counts)
+
+# COMMAND ----------
+
+word.collect()
+
+# COMMAND ----------
+
+def f(x) : print(x)
+fl = word.foreach(f)
+
+
+
+# COMMAND ----------
+
+wfl=word.filter(lambda x : 'spark' in x)
+wfl.collect()
+
+# COMMAND ----------
+
+wfl.count()
