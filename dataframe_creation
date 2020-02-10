@@ -1,0 +1,36 @@
+
+# COMMAND ----------
+
+loc="/FileStore/tables/abc.csv"
+
+
+# COMMAND ----------
+
+df = spark.read.format("csv") \
+     .option ("infer_schema", "true") \
+     .option ("header","true") \
+     .option ("sep",",") \
+     .load (loc)
+
+display(df)
+
+# COMMAND ----------
+
+df.count()
+
+# COMMAND ----------
+
+df.printSchema()
+
+# COMMAND ----------
+
+df.createOrReplaceTempView("cstats")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from cstats
+
+# COMMAND ----------
+
+df.describe().show()
